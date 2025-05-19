@@ -12,33 +12,31 @@ export default function LoginPage() {
     password: "",
   });
 
-  const [buttonDisabled, setButtonDisabled] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onLogin = async () => {
     try {
       setLoading(true);
-      const response = await axios.post("/api/users/login", user)
+      const response = await axios.post("/api/users/login", user);
       console.log("Login Success", response.data);
-      toast.success("Login Success")
-      router.push("/profile")
-
+      toast.success("Login Success");
+      router.push("/profile");
     } catch (error: any) {
       console.log("Login Failed", error.message);
-      toast.error(error.message)
-  
-    }finally{
-      setLoading(false)
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    if(user.email.length > 0 && user.password.length > 0){
+    if (user.email.length > 0 && user.password.length > 0) {
       setButtonDisabled(false);
-    }else{
-      setButtonDisabled(true)
+    } else {
+      setButtonDisabled(true);
     }
-  }, [user])
+  }, [user]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -70,6 +68,7 @@ export default function LoginPage() {
         {buttonDisabled ? "No Login" : "Login"}
       </button>
       <Link href="/signup">Visit signup page</Link>
+      <Link href="/forgetpassword">forget password</Link>
     </div>
   );
 }
