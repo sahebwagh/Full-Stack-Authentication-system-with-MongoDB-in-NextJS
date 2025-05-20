@@ -38,43 +38,66 @@ export default function resetPassword(){
 
 
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen py-2">
-        <h1 className="text-4xl ">Change Password</h1>
-        <label>New Password</label>
-        <input
-          className="p-2 mb-3 border rounded w-80"
-          type="password"
-          placeholder="Enter new password"
-          value={user.newPassword}
-          onChange={(e) =>
-            setUser((pre) => ({ ...pre, newPassword: e.target.value }))
-          }
-        />
-        <input
-          className="p-2 mb-3 border rounded w-80"
-          type="password"
-          placeholder="Conform password"
-          value={conformPassword}
-          onChange={(e) => setConformPassword(e.target.value)}
-        />
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 px-4">
+        <div className="w-full max-w-md bg-gray-800 p-8 rounded-xl shadow-2xl">
+          <h1 className="text-3xl font-semibold text-center mb-6">
+            Change Password
+          </h1>
 
-        {error && <p className="text-red-500 mb-3">{error}</p>}
+          {/* New Password */}
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              New Password
+            </label>
+            <input
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
+              type="password"
+              placeholder="Enter new password"
+              value={user.newPassword}
+              onChange={(e) =>
+                setUser((prev) => ({ ...prev, newPassword: e.target.value }))
+              }
+            />
+          </div>
 
-        <button
-          onClick={changePassword}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          Change Password
-        </button>
+          {/* Confirm Password */}
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Confirm Password
+            </label>
+            <input
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
+              type="password"
+              placeholder="Confirm password"
+              value={conformPassword}
+              onChange={(e) => setConformPassword(e.target.value)}
+            />
+          </div>
 
-        {changed && (
-          <p className="text-green-500 mt-4">
-            Password successfully changed!{" "}
-            <Link href="/login" className="underline">
-              Login
-            </Link>
-          </p>
-        )}
+          {/* Error Message */}
+          {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
+
+          {/* Submit Button */}
+          <button
+            onClick={changePassword}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-semibold transition duration-200"
+          >
+            Change Password
+          </button>
+
+          {/* Success Message */}
+          {changed && (
+            <p className="text-green-500 text-sm mt-4 text-center">
+              Password successfully changed!{" "}
+              <Link
+                href="/login"
+                className="underline text-blue-600 hover:text-blue-800"
+              >
+                Login
+              </Link>
+            </p>
+          )}
+        </div>
       </div>
     );
 

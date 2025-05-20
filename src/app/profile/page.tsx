@@ -36,24 +36,45 @@ export default function ProfilePage() {
     }, [data])
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1>Profile</h1>
-            <hr />
-            <p>Profile page</p>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 px-4">
+        <div className="w-full max-w-md bg-gray-600 p-8 rounded-xl shadow-md text-center">
+          <h1 className="text-2xl font-semibold mb-2">Profile</h1>
+          <hr className="mb-4" />
 
-            <h2 className="p-1 rounded bg-green-700">
-                {data === "nothing"? "Nothing" : <Link href={`/profile/${data}`}> {data}
-                </Link>}
+          <p className="text-gray-900 mb-4">Welcome to your profile page</p>
+
+          <div className="mb-4">
+            <h2 className="p-2 rounded text-white bg-green-600 inline-block">
+              {data === "nothing" ? (
+                "Nothing"
+              ) : (
+                <Link href={`/profile/${data}`} className="underline">
+                  {data}
+                </Link>
+              )}
             </h2>
-            <hr />
-            <button 
-            onClick={logout}
-            className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">LogOut</button>
+          </div>
 
-            // onClick getUserDetails
-            {/* <button 
-            onClick={getUserDetails}
-            className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Get user Details</button> */}
+          <hr className="mb-6" />
+
+          {/* Logout Button */}
+          <button
+            onClick={logout}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition duration-200"
+          >
+            Log Out
+          </button>
+
+          {/* Optional: Get User Details Button */}
+          {/*
+    <button
+      onClick={getUserDetails}
+      className="w-full mt-4 bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition duration-200"
+    >
+      Get User Details
+    </button>
+    */}
         </div>
-    )
+      </div>
+    );
 }
